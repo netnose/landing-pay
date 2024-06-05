@@ -17,7 +17,7 @@ export type PaymentOptions = {
 
 export function usePaymentOptions() {
   const params = useParams<{ options: string }>();
-  const [ options, setOptions ] = useState<PaymentOptions>({});
+  const [ options, setOptions ] = useState<PaymentOptions>();
 
   useEffect(() => {
     try {

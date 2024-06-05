@@ -8,13 +8,6 @@
   --background-rgb: 255, 255, 255;
 }
 
-body {
-  background-image: conic-gradient(
-    from 0deg at 0% 0%,
-    #00f600 0%, #0003ff 100%
-  );
-}
-
 main {
   display: flex;
   flex-direction: column;
@@ -22,6 +15,10 @@ main {
   justify-content: flex-end;
   min-height: 100vh;
   min-height: 100dvh;
+}
+
+.soft {
+  opacity: .6;
 }
 
 .logo {
@@ -37,6 +34,7 @@ main {
   width: 100%;
   max-width: 600px;
   padding: 24px;
+  transition: height .2s;
 }
 
 .payment .payment-data {
@@ -45,31 +43,71 @@ main {
   background-color: rgb(var(--midway-rgb));
   padding: 16px;
   text-align: center;
+  transition: height .2s;
 }
 
 .payment .payment-data .to-name {
   font-weight: bold;
+  transition: all .2s;
 }
 
 .payment .payment-data .price {
   font-size: 2em;
+  font-weight: bold;
+  transition: all .2s;
 }
 
 .payment .payment-data .description {
   font-size: .8em;
 }
 
-.payment .details {
-  margin-bottom: 2rem;
+.payment .payment-data.compressed {
+  display: flex;
+  justify-content: space-between;
+}
+
+.payment .payment-data.compressed .price {
+  font-size: 1em;
+}
+
+.payment .payment-data.compressed .description {
+  display: none;
+}
+
+.payment .intro .details {
+  margin-top: 1em;
+  margin-bottom: 1.5rem;
+}
+
+.payment .connect .connect-title {
+  margin-top: 1em;
+  font-size: 1.5em;
+}
+
+.payment .account {
+  display: flex;
+  gap: .5em;
+  align-items: center;
 }
 
 .payment button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
   color: rgb(var(--background-rgb));
   background: rgb(var(--foreground-rgb));
+  margin-top: .5em;
   box-sizing: border-box;
   width: 100%;
   border-radius: 8px;
   padding: 8px;
+}
+
+.payment button.secondary {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  padding: 4px;
 }
 
 @media (min-width: 600px) {

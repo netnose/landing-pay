@@ -2,9 +2,11 @@ import { PaymentOptions } from "@/hooks/usePaymentOptions";
 import { formatUnits } from "viem";
 
 export function PaymentData({
-  paymentOptions
+  paymentOptions,
+  compressed
 }: {
-  paymentOptions: PaymentOptions
+  paymentOptions: PaymentOptions,
+  compressed?: boolean
 }) {
   let price;
   try {
@@ -14,9 +16,14 @@ export function PaymentData({
   }
   catch { }
 
-  return <section className="payment-data">
+  let className = 'payment-data';
+  if (compressed) {
+    className += ' compressed';
+  }
+
+  return <section className={className}>
     {paymentOptions.toName && <div className="to-name">{paymentOptions.toName}</div>}
     {price && paymentOptions.token?.symbol && <div className="price">{price} <span className="symbol">{paymentOptions.token.symbol}</span></div>}
-    {paymentOptions.description && <div className="">{paymentOptions.description}</div>}
+    {paymentOptions.description && <div className="description">{paymentOptions.description}</div>}
   </section>;
 }
