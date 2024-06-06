@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Intro } from "./Intro";
 import { Connect } from "./Connect";
 import { Providers } from "@/app/Providers";
+import { Transact } from "./Transact";
 
 export function Payment({
   paymentOptions
@@ -17,7 +18,7 @@ export function Payment({
     <Providers>
       {step === 'intro' && <Intro paymentOptions={paymentOptions} setStep={setStep} />}
       {step === 'connect' && <Connect setStep={setStep} />}
-      {step === 'transact' && 'Transact...'}
+      {step === 'transact' && <Transact paymentOptions={paymentOptions} setStep={setStep} />}
     </Providers>
   </section>;
 }

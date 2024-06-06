@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@coinbase/onchainkit": "^0.18.0",
+    "encoding": "^0.1.13",
     "next": "14.2.3",
+    "pino-pretty": "^7.0.0",
     "react": "^18",
     "react-dom": "^18",
     "viem": "^2.13.6"

@@ -85,10 +85,29 @@ main {
   font-size: 1.5em;
 }
 
-.payment .account {
+.payment .transact .title {
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+.payment .transact .loading, .payment .transact .success, .payment .transact .error {
   display: flex;
-  gap: .5em;
+  margin: 1em auto;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  background: rgba(var(--midway-rgb), .5);
   align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+
+.payment .transact .loading {
+  animation-name: loading;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .payment button {
@@ -126,11 +145,25 @@ main {
   }
 }
 
+@keyframes loading {
+  from { background: rgba(var(--midway-rgb), .4); }
+  to { background: rgba(var(--midway-rgb), .7); }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --midway-rgb: 63, 63, 63;
     --background-rgb: 0, 0, 0;
+  }
+}
+
+@media (prefers-reduced-motion) {
+  .payment, .payment .payment-data, .payment .payment-data .to-name, .payment .payment-data .price {
+    transition: none;
+  }
+  .payment .transact .loading {
+    animation: none;
   }
 }
 
