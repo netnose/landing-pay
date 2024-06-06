@@ -53,7 +53,7 @@ main {
 
 .payment .payment-data .price {
   font-size: 2em;
-  font-weight: bold;
+  font-weight: 900;
   transition: all .2s;
 }
 
@@ -68,6 +68,7 @@ main {
 
 .payment .payment-data.compressed .price {
   font-size: 1em;
+  font-weight: bold;
 }
 
 .payment .payment-data.compressed .description {

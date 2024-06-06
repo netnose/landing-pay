@@ -9,7 +9,7 @@ export const config = createConfig({
       preference: "all"
     }),
     walletConnect({
-      projectId: process.env.WCPROJID ?? ''
+      projectId: process.env.NEXT_PUBLIC_WCPROJID ?? ''
     })
   ],
   ssr: true,

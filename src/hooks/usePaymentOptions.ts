@@ -7,7 +7,7 @@ export type PaymentOptions = {
   toName?: string;
   toAddress?: Address;
   logo?: string;
-  background?: string;
+  theme?: string;
   description?: string;
   details?: string;
   buttonVerb?: string;
