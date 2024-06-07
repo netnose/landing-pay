@@ -1,3 +1,5 @@
+"use client";
+
 import { Providers } from "@/app/Providers";
 import { PaymentOptions } from "@/types/PaymentOptions";
 import { useState } from "react";
