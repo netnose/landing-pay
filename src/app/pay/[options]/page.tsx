@@ -13,3 +13,5 @@ export default function Pay() {
     </main>
   );
 }
+
+export const runtime = 'edge';
