@@ -1,4 +1,4 @@
-import { PaymentOptions } from "@/hooks/usePaymentOptions";
+import { PaymentOptions } from "@/types/PaymentOptions";
 import { Avatar, Name } from "@coinbase/onchainkit/identity";
 import { Dispatch, SetStateAction } from "react";
 import { useAccount, useDisconnect } from "wagmi";

@@ -1,19 +1,6 @@
-import { Token } from "@coinbase/onchainkit/token";
+import { PaymentOptions } from "@/types/PaymentOptions";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Address } from "viem";
-
-export type PaymentOptions = {
-  toName?: string;
-  toAddress?: Address;
-  logo?: string;
-  theme?: string;
-  description?: string;
-  details?: string;
-  buttonVerb?: string;
-  amount?: string;
-  token?: Partial<Token>;
-};
 
 export function usePaymentOptions() {
   const params = useParams<{ options: string }>();

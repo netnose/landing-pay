@@ -1,4 +1,5 @@
-import { PaymentOptions } from "@/hooks/usePaymentOptions";
+import { PaymentOptions } from "@/types/PaymentOptions";
+import { getToken } from "@/utils/token";
 import { formatUnits } from "viem";
 
 export function PaymentData({
@@ -8,10 +9,12 @@ export function PaymentData({
   paymentOptions: PaymentOptions,
   compressed?: boolean
 }) {
+  const token = getToken(paymentOptions?.token);
+
   let price;
   try {
-    if (paymentOptions.amount && paymentOptions.token?.decimals) {
-      price = formatUnits(BigInt(paymentOptions.amount), paymentOptions.token.decimals);
+    if (paymentOptions.amount && token.decimals) {
+      price = formatUnits(BigInt(paymentOptions.amount), token.decimals);
     }
   }
   catch { }
@@ -23,7 +26,7 @@ export function PaymentData({
 
   return <section className={className}>
     {paymentOptions.toName && <div className="to-name">{paymentOptions.toName}</div>}
-    {price && paymentOptions.token?.symbol && <div className="price">{price} <span className="symbol">{paymentOptions.token.symbol}</span></div>}
+    {price && token.symbol && <div className="price">{price} <span className="symbol">{token.symbol}</span></div>}
     {paymentOptions.description && <div className="description">{paymentOptions.description}</div>}
   </section>;
 }

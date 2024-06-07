@@ -1,9 +1,9 @@
-import { PaymentOptions } from "@/hooks/usePaymentOptions";
-import { PaymentData } from "./PaymentData";
-import { useState } from "react";
-import { Intro } from "./Intro";
-import { Connect } from "./Connect";
 import { Providers } from "@/app/Providers";
+import { PaymentOptions } from "@/types/PaymentOptions";
+import { useState } from "react";
+import { Connect } from "./Connect";
+import { Intro } from "./Intro";
+import { PaymentData } from "./PaymentData";
 import { Transact } from "./Transact";
 
 export function Payment({

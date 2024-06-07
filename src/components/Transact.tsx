@@ -1,4 +1,5 @@
-import { PaymentOptions } from "@/hooks/usePaymentOptions";
+import { PaymentOptions } from "@/types/PaymentOptions";
+import { getToken } from "@/utils/token";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { erc20Abi } from "viem";
 import { useDisconnect, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
@@ -16,16 +17,18 @@ export function Transact({
     mutation: { onSuccess: () => { setStep('connect'); } }
   });
   const { writeContract } = useWriteContract({
-    mutation: { onSuccess: (id) => { setId(id); }, onError: (error) => { setError('wallet') } },
+    mutation: { onSuccess: (id) => { setId(id); }, onError: (error) => { console.log(error.message); setError('wallet') } },
   });
   const { isSuccess, isError } = useWaitForTransactionReceipt({
     hash: id as `0x${string}` | undefined
   });
 
+  const token = getToken(paymentOptions?.token);
+
   useEffect(() => {
-    if (!paymentOptions?.token?.address || paymentOptions?.token?.chainId !== 8453 || !paymentOptions?.toAddress || !paymentOptions?.amount) return;
+    if (!token.address || token.chainId !== 8453 || !paymentOptions?.toAddress || !paymentOptions?.amount) return;
     writeContract({
-      address: paymentOptions.token.address,
+      address: token.address,
       chainId: 8453,
       abi: erc20Abi,
       functionName: "transfer",
@@ -42,14 +45,14 @@ export function Transact({
   const reset = () => { setError(undefined); disconnect(); };
   const showTransaction = () => { window.open('https://onceupon.xyz/' + id); };
   return <section className="transact">
+    {!error && !isSuccess && <div className="loading">⏳</div>}
+    {error && <div className="error">❌</div>}
+    {isSuccess && <div className="success">✅</div>}
     {!id && !error && <h1 className="title">Waiting for Wallet response...</h1>}
     {id && !isSuccess && !error && <h1 className="title">Waiting transaction completion...</h1>}
     {error === 'wallet' && <h1 className="title">Wallet error</h1>}
     {error === 'transaction' && <h1 className="title">Transaction error</h1>}
     {isSuccess && <h1 className="title">Transaction completed</h1>}
-    {!error && !isSuccess && <div className="loading">⏳</div>}
-    {error && <div className="error">❌</div>}
-    {isSuccess && <div className="success">✅</div>}
     {(!id || error === 'transaction') && <button type="button" className="secondary" onClick={reset}>{!error && <span className="soft">Wallet not responding? </span>}Retry</button>}
     {id && <button type="button" className="secondary" onClick={showTransaction}><span className="soft">Check transaction on</span> Once Upon</button>}
   </section>;
