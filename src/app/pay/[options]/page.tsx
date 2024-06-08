@@ -7,7 +7,7 @@ export async function generateMetadata({
 }: {
   params: { options: string }
 }): Promise<Metadata> {
-  const paymentOptions = decodePaymentOptions(params.options);
+  const paymentOptions = await decodePaymentOptions(params.options);
 
   let currentTitle = 'Landing Pay';
   if (paymentOptions?.toName) {
@@ -26,12 +26,12 @@ export async function generateMetadata({
   }
 }
 
-export default function Pay({
+export default async function Pay({
   params
 }: {
   params: { options: string }
 }) {
-  const paymentOptions = decodePaymentOptions(params.options);
+  const paymentOptions = await decodePaymentOptions(params.options);
 
   return (
     <main className={paymentOptions?.theme ?? ''}>

@@ -17,7 +17,7 @@ export function Transact({
     mutation: { onSuccess: () => { setStep('connect'); } }
   });
   const { writeContract } = useWriteContract({
-    mutation: { onSuccess: (id) => { setId(id); }, onError: (error) => { console.log(error.message); setError('wallet') } },
+    mutation: { onSuccess: (id) => { setId(id); }, onError: (error) => { setError('wallet') } },
   });
   const { isSuccess, isError } = useWaitForTransactionReceipt({
     hash: id as `0x${string}` | undefined
