@@ -1,6 +1,6 @@
 "use client";
 
-import { Providers } from "@/app/Providers";
+import { Providers } from "@/components/Providers";
 import { PaymentOptions } from "@/types/PaymentOptions";
 import { useState } from "react";
 import { Connect } from "./Connect";

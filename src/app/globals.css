@@ -15,6 +15,7 @@ main {
   justify-content: flex-end;
   min-height: 100vh;
   min-height: 100dvh;
+  background: var(--background);
 }
 
 .soft {
@@ -27,7 +28,11 @@ main {
   align-items: center;
 }
 
-.payment {
+.logo.emoji {
+  font-size: 6rem;
+}
+
+.payment, .wizard {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   box-sizing: border-box;
@@ -37,7 +42,7 @@ main {
   transition: height .2s;
 }
 
-.payment .payment-data {
+.payment-data {
   margin-bottom: 2rem;
   border-radius: 8px;
   background-color: rgb(var(--midway-rgb));
@@ -46,32 +51,32 @@ main {
   transition: height .2s;
 }
 
-.payment .payment-data .to-name {
+.payment-data .to-name {
   font-weight: bold;
   transition: all .2s;
 }
 
-.payment .payment-data .price {
+.payment-data .price {
   font-size: 2em;
   font-weight: 900;
   transition: all .2s;
 }
 
-.payment .payment-data .description {
+.payment-data .description {
   font-size: .8em;
 }
 
-.payment .payment-data.compressed {
+.payment-data.compressed {
   display: flex;
   justify-content: space-between;
 }
 
-.payment .payment-data.compressed .price {
+.payment-data.compressed .price {
   font-size: 1em;
   font-weight: bold;
 }
 
-.payment .payment-data.compressed .description {
+.payment-data.compressed .description {
   display: none;
 }
 
@@ -110,7 +115,7 @@ main {
   animation-direction: alternate;
 }
 
-.payment button {
+.payment button, .wizard button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,10 +129,56 @@ main {
   padding: 8px;
 }
 
-.payment button.secondary {
+.wizard input {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgb(var(--foreground-rgb));
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 8px;
+}
+
+.payment button.secondary, .wizard button.secondary {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
   padding: 4px;
+}
+
+.theme .title {
+  margin: .2em 0 1em;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.theme .label {
+  margin: .6em 0 .5em;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.themes, .emojis {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.themes button.theme, .emojis button.emoji {
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.themes button.theme {
+  background: var(--background);
+}
+
+.emojis button:hover.emoji, .emojis button.emoji.selected {
+  background: var(--background);
 }
 
 @media (min-width: 600px) {
@@ -140,7 +191,7 @@ main {
     flex-grow: 0;
   }
 
-  .payment {
+  .payment, .wizard {
     border-radius: 32px;
   }
 }

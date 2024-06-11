@@ -1,3 +1,23 @@
-main.yellow {
-    background: rgb(251 203 7);
+main.yellow, button.yellow {
+    --background: rgb(251, 203, 7);
+}
+
+main.based, button.based {
+    --background: rgb(14, 118, 253);
+}
+
+main.green, button.green {
+    --background: rgb(60, 136, 39);
+}
+
+main.purple, button.purple {
+    --background: rgb(139, 92, 246);
+}
+
+main.red, button.red {
+    --background: rgb(255, 4, 32);
+}
+
+main.rainbow, button.rainbow {
+    --background: linear-gradient(to top right, #f00 0%, #ff8000 20%, #ff0 40%, #0f0 60%, #0080ff 80%, #f0f 100%);
 }

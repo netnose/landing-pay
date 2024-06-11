@@ -1,3 +1,4 @@
+import { Logo } from "@/components/Logo";
 import { Payment } from "@/components/Payment";
 import { decodePaymentOptions } from "@/utils/payment-options";
 import { Metadata } from "next";
@@ -35,7 +36,7 @@ export default async function Pay({
 
   return (
     <main className={paymentOptions?.theme ?? ''}>
-      { paymentOptions?.logo && <div className="logo"><img src={paymentOptions.logo} alt="" /></div> }
+      <Logo paymentOptions={paymentOptions} />
       { paymentOptions && <Payment paymentOptions={paymentOptions} />}
     </main>
   );
