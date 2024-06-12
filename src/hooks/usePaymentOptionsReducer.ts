@@ -8,6 +8,8 @@ function reducer(state: PaymentOptions, newState: PaymentOptions): PaymentOption
 export function usePaymentOptionsReducer() {
     return useReducer(reducer, {
         theme: 'based',
-        emoji: '😎'
+        emoji: '😎',
+        amount: '0',
+        token: 'usdc'
     });
 }

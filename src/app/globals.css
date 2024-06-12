@@ -129,9 +129,10 @@ main {
   padding: 8px;
 }
 
-.wizard input {
+.wizard input, .wizard select {
   box-sizing: border-box;
   width: 100%;
+  margin-bottom: 1rem;
   border-radius: 8px;
   border: 1px solid rgb(var(--foreground-rgb));
   background: rgb(255, 255, 255);
@@ -145,14 +146,14 @@ main {
   padding: 4px;
 }
 
-.theme .title {
+.wizard .title {
   margin: .2em 0 1em;
   font-size: 1.5em;
   font-weight: bold;
 }
 
-.theme .label {
-  margin: .6em 0 .5em;
+.wizard .label {
+  margin: .5rem 0 .6rem;
   font-size: 1.2em;
   font-weight: bold;
 }

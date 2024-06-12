@@ -19,7 +19,7 @@ export function Payment({
     <PaymentData paymentOptions={paymentOptions} compressed={step !== 'intro'} />
     <Providers>
       {step === 'intro' && <Intro paymentOptions={paymentOptions} setStep={setStep} />}
-      {step === 'connect' && <Connect setStep={setStep} />}
+      {step === 'connect' && <Connect onSuccess={() => { setStep('transact') }} />}
       {step === 'transact' && <Transact paymentOptions={paymentOptions} setStep={setStep} />}
     </Providers>
   </section>;

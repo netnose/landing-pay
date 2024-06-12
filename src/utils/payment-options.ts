@@ -1,8 +1,9 @@
 import { PaymentOptions } from "@/types/PaymentOptions";
 import { getRequestContext } from "@cloudflare/next-on-pages";
+import { isValidButtonVerb, validButtonVerbs } from "./button-verbs";
 
 export async function decodePaymentOptions(options: string): Promise<PaymentOptions> {
-  let decodedOptions = {};
+  let decodedOptions: PaymentOptions = {};
   try {
     if (options.length <= 64) {
       try {
@@ -15,7 +16,10 @@ export async function decodePaymentOptions(options: string): Promise<PaymentOpti
       catch {}
     }
     const json = atob(options);
-    decodedOptions = JSON.parse(json);
+    decodedOptions = JSON.parse(json) as PaymentOptions;
+    if (!isValidButtonVerb(decodedOptions?.buttonVerb)) {
+      decodedOptions.buttonVerb = validButtonVerbs[0] ?? 'Pay';
+    }
   }
   catch {}
 

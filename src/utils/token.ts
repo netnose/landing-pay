@@ -1,7 +1,7 @@
 import { Token } from "@coinbase/onchainkit/token"
 
 const supportedTokens: {
-  [key: string]: Partial<Token>
+  [key: string]: Token
 } = {
   'usdc': {
     address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
@@ -13,7 +13,17 @@ const supportedTokens: {
   }
 };
 
-export function getToken(tokenId?: string): Partial<Token> {
-  if (!tokenId || !(tokenId in supportedTokens)) return {};
+export function getTokens(): Token[] {
+  let array = [];
+  for (const key in supportedTokens) {
+    array.push(supportedTokens[key]);
+  }
+  return array;
+}
+
+export function getToken(tokenId?: string): Token {
+  if (!tokenId || !(tokenId in supportedTokens)) {
+    tokenId = 'usdc';
+  }
   return supportedTokens[tokenId];
 }

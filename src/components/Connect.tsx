@@ -3,11 +3,11 @@ import { base } from "viem/chains";
 import { useConnect } from "wagmi";
 
 export function Connect({
-  setStep
+  onSuccess
 }: {
-  setStep: Dispatch<SetStateAction<string>>
+  onSuccess?: () => void
 }) {
-  const { connectors, connect } = useConnect({ mutation: { onSuccess: () => { setStep('transact'); }}});
+  const { connectors, connect } = useConnect({ mutation: { onSuccess }});
   const coinbaseWalletConnector = connectors.filter((connector) => connector.id === 'coinbaseWalletSDK');
 
   return <section className="connect">
