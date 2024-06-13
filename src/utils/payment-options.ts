@@ -1,6 +1,7 @@
 import { PaymentOptions } from "@/types/PaymentOptions";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { isValidButtonVerb, validButtonVerbs } from "./button-verbs";
+import base64url from "base64url";
 
 export async function decodePaymentOptions(options: string): Promise<PaymentOptions> {
   let decodedOptions: PaymentOptions = {};
@@ -15,7 +16,7 @@ export async function decodePaymentOptions(options: string): Promise<PaymentOpti
       }
       catch {}
     }
-    const json = atob(options);
+    const json = base64url.decode(options, 'utf8');
     decodedOptions = JSON.parse(json) as PaymentOptions;
     if (!isValidButtonVerb(decodedOptions?.buttonVerb)) {
       decodedOptions.buttonVerb = validButtonVerbs[0] ?? 'Pay';

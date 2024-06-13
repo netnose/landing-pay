@@ -17,14 +17,11 @@ export function ThemeSettings({
     <section className="themes">
       {availableThemes.map((theme) => {
         const classNane = 'theme ' + theme;
-        return <button key={theme} type="button" className={classNane} onClick={() => updatePaymentOptions({ theme })}></button>;
+        return <button key={theme} type="button" className={classNane} onClick={() => { updatePaymentOptions({ theme }); }}></button>;
       })}
     </section>
     <h2 className="label">Logo Image URL...</h2>
-    <input type="text" name="logo" value={paymentOptions.logo} onChange={(e) => {
-      const logo = e.target.value;
-      updatePaymentOptions({ logo })
-    }} placeholder="https://"></input>
+    <input type="text" name="logo" value={paymentOptions.logo} onChange={(e) => { updatePaymentOptions({ logo: e.target.value }); }} placeholder="https://, ipfs://, ar://"></input>
     <h2 className="label">...or Emoji</h2>
     <section className="emojis">
       {availableEmojis.map((emoji) => {

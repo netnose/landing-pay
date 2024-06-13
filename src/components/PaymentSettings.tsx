@@ -5,30 +5,21 @@ import { PriceField } from "./PriceField";
 
 export function PaymentSettings({
   paymentOptions,
-  updatePaymentOptions
+  updatePaymentOptions,
+  error
 }: {
   paymentOptions: PaymentOptions,
-  updatePaymentOptions: Dispatch<PaymentOptions>
+  updatePaymentOptions: Dispatch<PaymentOptions>,
+  error: boolean
 }) {
   return <section className="payment-setting">
     <h1 className="title">Payment details</h1>
-    <h2 className="label">Recipient Name</h2>
-    <input type="text" name="recipient-name" value={paymentOptions.toName ?? ''} onChange={(e) => {
-      const toName = e.target.value;
-      updatePaymentOptions({ toName })
-    }} placeholder="Jesse Pollak"></input>
     <h2 className="label">Description</h2>
-    <input type="text" name="description" value={paymentOptions.description ?? ''} onChange={(e) => {
-      const description = e.target.value;
-      updatePaymentOptions({ description })
-    }} placeholder="Order #69420, Donation"></input>
+    <input type="text" name="description" value={paymentOptions.description ?? ''} onChange={(e) => { updatePaymentOptions({ description: e.target.value }); }} placeholder="Order #69420, Donation"></input>
     <h2 className="label">Price</h2>
-    <PriceField paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} />
+    <PriceField paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} error={error} />
     <h2 className="label">Button label</h2>
-    <select name="button-verb" value={paymentOptions.buttonVerb} onChange={(e) => {
-      const buttonVerb = e.target.value;
-      updatePaymentOptions({ buttonVerb })
-    }}>
+    <select className="button-verb" name="button-verb" value={paymentOptions.buttonVerb} onChange={(e) => { updatePaymentOptions({ buttonVerb: e.target.value }); }}>
       {validButtonVerbs.map((verb) => <option key={verb} value={verb}>{verb}</option>)}
     </select>
   </section>

@@ -26,6 +26,7 @@ main {
   flex-grow: 1;
   display: flex;
   align-items: center;
+  max-width: 300px;
 }
 
 .logo.emoji {
@@ -115,13 +116,13 @@ main {
   animation-direction: alternate;
 }
 
-.payment button, .wizard button {
+.payment button, .connect button, .details button, button.wiz-next, button.wiz-prev {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: .5em;
   color: rgb(var(--background-rgb));
-  background: rgb(var(--foreground-rgb));
+  background: rgba(var(--foreground-rgb), 0.9);
   margin-top: .5em;
   box-sizing: border-box;
   width: 100%;
@@ -129,7 +130,11 @@ main {
   padding: 8px;
 }
 
-.wizard input, .wizard select {
+.payment button:hover, .connect button:hover, .details button:hover, button:hover.wiz-next {
+  background: rgb(var(--foreground-rgb));
+}
+
+.wizard input, .wizard select, .details textarea {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 1rem;
@@ -140,14 +145,26 @@ main {
   padding: 8px;
 }
 
-.payment button.secondary, .wizard button.secondary {
-  color: rgb(var(--foreground-rgb));
+.wizard input.error {
+  background: rgb(252, 141, 141);
+}
+
+.recipient-address input, .price-field input {
+  margin-bottom: 0;
+}
+
+.payment button.secondary, button.wiz-prev {
+  color: rgba(var(--foreground-rgb), 0.9);
   background: rgb(var(--background-rgb));
   padding: 4px;
 }
 
+.payment button:hover.secondary, button:hover.wiz-prev {
+  color: rgb(var(--foreground-rgb));
+}
+
 .wizard .title {
-  margin: .2em 0 1em;
+  margin: .2rem 0 1rem;
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -180,6 +197,10 @@ main {
 
 .emojis button:hover.emoji, .emojis button.emoji.selected {
   background: var(--background);
+}
+
+section.recipient-address, select.button-verb, section.price-field, .details textarea {
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 600px) {

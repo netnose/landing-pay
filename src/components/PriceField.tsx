@@ -6,10 +6,12 @@ import { formatUnits, parseUnits } from "viem";
 
 export function PriceField({
   paymentOptions,
-  updatePaymentOptions
+  updatePaymentOptions,
+  error
 }: {
   paymentOptions: PaymentOptions,
-  updatePaymentOptions: Dispatch<PaymentOptions>
+  updatePaymentOptions: Dispatch<PaymentOptions>,
+  error: boolean
 }) {
   const [amount, setAmount] = useState('');
   const token = getToken(paymentOptions.token);
@@ -38,7 +40,7 @@ export function PriceField({
   }, [amount, decimals]);
   
   return <div className="price-field">
-    <input type="text" name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
+    <input type="text" className={error ? 'error' : ''} name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
     <TokenSelectDropdown options={getTokens()} token={token} setToken={(t) => { updatePaymentOptions({ token: t.symbol.toLowerCase() })}}></TokenSelectDropdown>
   </div>
 }
