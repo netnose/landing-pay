@@ -1,8 +1,6 @@
 import { PaymentOptions } from "@/types/PaymentOptions";
+import { availableEmojis, availableThemes } from "@/utils/themes";
 import { Dispatch } from "react";
-
-const availableThemes = [ 'based', 'yellow', 'green', 'purple', 'red', 'rainbow' ];
-const availableEmojis = [ '😎', '🤩', '😍', '🥳', '💀', '👻', '👀', '💩', '🦄', '👍', '🫶', '🤌', '🤙', '🎉', '🔥', '❤️', '🟡', '🔵', '🔴', '🟣', '🌈', '🍔', '🍕', '🎩', '⬆️', '🎱', '🎲', '🎰', '🚀', '🔋', '💰', '🔫', '📦' ];
 
 export function ThemeSettings({
   paymentOptions,

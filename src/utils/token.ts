@@ -10,6 +10,38 @@ const supportedTokens: {
     name: 'USD Coin',
     symbol: 'USDC',
     decimals: 6
+  },
+  'dai': {
+    name: 'Dai',
+    address: '0x50c5725949a6f0c72e6c4a641f24049a917db0cb',
+    symbol: 'DAI',
+    decimals: 18,
+    image: 'https://d3r81g40ycuhqg.cloudfront.net/wallet/wais/d0/d7/d0d7784975771dbbac9a22c8c0c12928cc6f658cbcf2bbbf7c909f0fa2426dec-NmU4ZWViMDItOTQyYy00Yjk5LTkzODUtNGJlZmJiMTUxOTgy',
+    chainId: 8453,
+  },
+  'weth': {
+    name: 'Wrapped Ether',
+    address: '0x4200000000000000000000000000000000000006',
+    symbol: 'WETH',
+    decimals: 18,
+    image: 'https://ethereum-optimism.github.io/data/WETH/logo.png',
+    chainId: 8453
+  },
+  'nogs': {
+    name: 'Noggles',
+    address: '0x13741c5df9ab03e7aa9fb3bf1f714551dd5a5f8a',
+    symbol: 'NOGS',
+    decimals: 18,
+    image: 'https://ethereum-optimism.github.io/data/NOGS/logo.png',
+    chainId: 8453
+  },
+  'degen': {
+    name: 'Degen',
+    address: '0x4ed4E862860beD51a9570b96d89aF5E1B0Efefed',
+    symbol: 'DEGEN',
+    decimals: 18,
+    image: 'https://coin-images.coingecko.com/coins/images/34515/large/android-chrome-512x512.png?1706198225',
+    chainId: 8453
   }
 };
 

@@ -4,5 +4,6 @@ interface CloudflareEnv {
   // a way make sure that you have installed the package
   // as a dev dependency and you have added it to your
   //`tsconfig.json` file under `compilerOptions.types`.
-  SHORTURLS: KVNamespace
+  SHORTURLS: KVNamespace,
+  SITE_URL: string
 }

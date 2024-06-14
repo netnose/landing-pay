@@ -134,18 +134,18 @@ main {
   background: rgb(var(--foreground-rgb));
 }
 
-.wizard input, .wizard select, .details textarea {
+.wizard input, .wizard select, .details textarea, .price-field {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 1rem;
   border-radius: 8px;
-  border: 1px solid rgb(var(--foreground-rgb));
+  border: 1px solid rgb(0, 0, 0);
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   padding: 8px;
 }
 
-.wizard input.error {
+.wizard input.error, .price-field.error {
   background: rgb(252, 141, 141);
 }
 
@@ -201,6 +201,22 @@ main {
 
 section.recipient-address, select.button-verb, section.price-field, .details textarea {
   margin-bottom: 2rem;
+}
+
+.price-field {
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 4px;
+}
+
+.price-field input {
+  padding: 0 0 0 4px;
+  width: 75%;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
 }
 
 @media (min-width: 600px) {

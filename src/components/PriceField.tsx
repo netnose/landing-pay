@@ -4,6 +4,8 @@ import { TokenSelectDropdown } from "@coinbase/onchainkit/token";
 import { Dispatch, useEffect, useState } from "react";
 import { formatUnits, parseUnits } from "viem";
 
+import '@coinbase/onchainkit/styles.css';
+
 export function PriceField({
   paymentOptions,
   updatePaymentOptions,
@@ -30,17 +32,20 @@ export function PriceField({
       if (amount && amount !== '') {
         let parsedAmount = parseUnits(amount, decimals).toString();
         updatePaymentOptions({ amount: parsedAmount });
-        console.log(parsedAmount);
       } else {
         updatePaymentOptions({ amount: '0' });
-        console.log(0);
       }
     }
     catch {}
   }, [amount, decimals]);
   
-  return <div className="price-field">
-    <input type="text" className={error ? 'error' : ''} name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
+  let className = 'price-field';
+  if (error) {
+    className += ' error';
+  }
+
+  return <div className={className}>
+    <input type="text" name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
     <TokenSelectDropdown options={getTokens()} token={token} setToken={(t) => { updatePaymentOptions({ token: t.symbol.toLowerCase() })}}></TokenSelectDropdown>
   </div>
 }
