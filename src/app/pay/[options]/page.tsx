@@ -37,7 +37,9 @@ export async function generateMetadata({
     title: currentTitle,
     description: "Pay with crypto the easy way",
     openGraph: {
-      title: currentTitle
+      title: currentTitle,
+      description: "Pay with crypto the easy way",
+      images: [requestCtx.env.SITE_URL + '/og/image/' + params.options]
     },
     other: {
       ...frameData
