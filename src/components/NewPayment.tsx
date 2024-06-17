@@ -8,6 +8,7 @@ import { RecipientSettings } from "@/components/RecipientSettings";
 import { ThemeSettings } from "@/components/ThemeSettings";
 import { Wizard } from "@/components/Wizard";
 import { usePaymentOptionsReducer } from "@/hooks/usePaymentOptionsReducer";
+import { getTheme } from "@/utils/themes";
 import { useState } from "react";
 
 export default function NewPayment() {
@@ -30,7 +31,7 @@ export default function NewPayment() {
   };
 
   return (
-    <main className={paymentOptions?.theme ?? ''}>
+    <main style={{'--background': getTheme(paymentOptions?.theme)} as React.CSSProperties}>
       <Logo paymentOptions={paymentOptions} />
       <Wizard nextLabel="Next" prevLabel={<><span className="soft">Want to change something? </span>Go back</>} canProceed={canProceed}>
         <ThemeSettings paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} />

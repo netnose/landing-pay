@@ -1,7 +1,6 @@
 import NewPayment from "@/components/NewPayment";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { getFrameMetadata } from "@coinbase/onchainkit/core";
-import { FrameMetadata } from "@coinbase/onchainkit/frame";
 import { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {

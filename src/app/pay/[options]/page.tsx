@@ -1,6 +1,7 @@
 import { Logo } from "@/components/Logo";
 import { Payment } from "@/components/Payment";
 import { decodePaymentOptions } from "@/utils/payment-options";
+import { getTheme } from "@/utils/themes";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -35,9 +36,9 @@ export default async function Pay({
   const paymentOptions = await decodePaymentOptions(params.options);
 
   return (
-    <main className={paymentOptions?.theme ?? ''}>
+    <main style={{'--background': getTheme(paymentOptions?.theme)} as React.CSSProperties}>
       <Logo paymentOptions={paymentOptions} />
-      { paymentOptions && <Payment paymentOptions={paymentOptions} />}
+      {paymentOptions && <Payment paymentOptions={paymentOptions} />}
     </main>
   );
 }
