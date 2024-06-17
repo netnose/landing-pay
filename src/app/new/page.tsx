@@ -6,15 +6,15 @@ import { Metadata } from "next";
 export async function generateMetadata(): Promise<Metadata> {
     const requestCtx = getRequestContext();
     const frameData = getFrameMetadata({
-        image: requestCtx.env.SITE_URL + '/new.jpg',
-        buttons: [
-            {
-                action: 'link',
-                label: 'Let\'s get started!',
-                target: requestCtx.env.SITE_URL + '/new'
-            }
-        ]
-    })
+      image: requestCtx.env.SITE_URL + '/new.jpg',
+      buttons: [
+        {
+          action: 'link',
+          label: 'Let\'s get started!',
+          target: requestCtx.env.SITE_URL + '/new'
+        }
+      ]
+    });
     
     return {
       title: 'Build your Payment page in 1 minute',

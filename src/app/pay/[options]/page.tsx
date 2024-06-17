@@ -2,6 +2,8 @@ import { Logo } from "@/components/Logo";
 import { Payment } from "@/components/Payment";
 import { decodePaymentOptions } from "@/utils/payment-options";
 import { getTheme } from "@/utils/themes";
+import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getFrameMetadata } from "@coinbase/onchainkit/core";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -19,11 +21,26 @@ export async function generateMetadata({
     currentTitle = paymentOptions.description + ' - ' + currentTitle;
   }
 
+  const requestCtx = getRequestContext();
+  const frameData = getFrameMetadata({
+    image: requestCtx.env.SITE_URL + '/og/image/' + params.options,
+    buttons: [
+      {
+        action: 'link',
+        label: paymentOptions?.buttonVerb ?? 'Pay',
+        target: requestCtx.env.SITE_URL + '/pay/' + params.options
+      }
+    ]
+  });
+
   return {
     title: currentTitle,
     description: "Pay with crypto the easy way",
     openGraph: {
       title: currentTitle
+    },
+    other: {
+      ...frameData
     }
   }
 }
