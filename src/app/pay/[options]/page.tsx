@@ -29,7 +29,7 @@ export async function generateMetadata({
         action: 'tx',
         label: paymentOptions?.buttonVerb ?? 'Pay',
         target: requestCtx.env.SITE_URL + '/og/frame/tx/' + params.options,
-        postUrl: requestCtx.env.SITE_URL + '/og/frame/tx-status'
+        postUrl: requestCtx.env.SITE_URL + '/og/frame/tx-status/pending'
       }
     ]
   });

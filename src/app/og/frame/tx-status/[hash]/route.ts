@@ -1,21 +1,22 @@
 import { getRequestContext } from '@cloudflare/next-on-pages';
 import { FrameButtonMetadata, FrameRequest, getFrameHtmlResponse, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
-import { createPublicClient, http } from 'viem';
+import { createPublicClient, http, isHex } from 'viem';
 import { base } from 'viem/chains';
+
+export function GET(req: NextRequest, { params }: { params: { hash: string }}): Response {
+  return NextResponse.redirect('https://onceupon.xyz/' + params.hash);
+}
  
-export async function POST(req: NextRequest): Promise<Response> {
+export async function POST(req: NextRequest, { params }: { params: { hash: string }}): Promise<Response> {
   const requestCtx = getRequestContext();
   const frameRequest: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(frameRequest);
   if (!isValid) return Response.error();
 
   let txHash = '';
-  if (message.state && message.state.serialized && message.state.serialized !== '') {
-    try {
-      txHash = JSON.parse(message.state.serialized).hash;
-    }
-    catch {}
+  if (params.hash && isHex(params.hash)) {
+    txHash = params.hash;
   }
   else if (message.transaction !== null && message.transaction.hash) {
     txHash = message.transaction.hash;
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest): Promise<Response> {
     getFrameHtmlResponse({
       buttons: [button],
       image,
-      state: { hash: txHash }
+      postUrl: requestCtx.env.SITE_URL + '/og/frame/tx-status/' + txHash
     }),
   );
 }
