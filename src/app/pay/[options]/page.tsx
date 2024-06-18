@@ -26,9 +26,10 @@ export async function generateMetadata({
     image: requestCtx.env.SITE_URL + '/og/image/' + params.options,
     buttons: [
       {
-        action: 'link',
+        action: 'tx',
         label: paymentOptions?.buttonVerb ?? 'Pay',
-        target: requestCtx.env.SITE_URL + '/pay/' + params.options
+        target: requestCtx.env.SITE_URL + '/og/frame/tx/' + params.options,
+        postUrl: requestCtx.env.SITE_URL + '/og/frame/tx-status/pending'
       }
     ]
   });
