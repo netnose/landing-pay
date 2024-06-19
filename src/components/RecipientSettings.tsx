@@ -14,11 +14,10 @@ export function RecipientSettings({
 }) {
   return <section className="recipient-setting">
     <h1 className="title">Recipient</h1>
-    <h2 className="label">Name</h2>
-    <input type="text" name="recipient-name" value={paymentOptions.toName ?? ''} onChange={(e) => { updatePaymentOptions({ toName: e.target.value }); }} placeholder="Jesse Pollak"></input>
-    <h2 className="label">Wallet Address</h2>
+    <label className="label" htmlFor="recipient-name">Name</label>
+    <input type="text" id="recipient-name" name="recipient-name" value={paymentOptions.toName ?? ''} onChange={(e) => { updatePaymentOptions({ toName: e.target.value }); }} placeholder="Jesse Pollak"></input>
     <Providers>
-        <RecipientAddress paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} error={error} />
+      <RecipientAddress paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} error={error} />
     </Providers>
   </section>
 }

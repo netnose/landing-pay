@@ -164,12 +164,14 @@ main {
 }
 
 .wizard .title {
+  display: block;
   margin: .2rem 0 1rem;
   font-size: 1.5em;
   font-weight: bold;
 }
 
 .wizard .label {
+  display: block;
   margin: .5rem 0 .6rem;
   font-size: 1.2em;
   font-weight: bold;

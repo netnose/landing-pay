@@ -26,10 +26,14 @@ export function RecipientAddress({
   }, [address, updatePaymentOptions]);
 
   return <section className="recipient-address">
-    <input type="text" className={error ? 'error' : ''} name="recipient-address" value={addressValue} onChange={(e) => {
+    <label className="label" htmlFor="recipient-address">Wallet Address</label>
+    <input type="text" className={error ? 'error' : ''} id="recipient-address" name="recipient-address" value={addressValue} onChange={(e) => {
       const toAddress = e.target.value;
       if (isAddress(toAddress)) {
         updatePaymentOptions({ toAddress })
+      }
+      else {
+        updatePaymentOptions({ toAddress: undefined });
       }
       setAddressValue(toAddress);
     }} placeholder="0x..."></input>

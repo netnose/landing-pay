@@ -44,8 +44,11 @@ export function PriceField({
     className += ' error';
   }
 
-  return <div className={className}>
-    <input type="text" name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
-    <TokenSelectDropdown options={getTokens()} token={token} setToken={(t) => { updatePaymentOptions({ token: t.symbol.toLowerCase() })}}></TokenSelectDropdown>
-  </div>
+  return <>
+    <label className="label" htmlFor="amount">Price</label>
+    <div className={className}>
+      <input type="text" id="amount" name="amount" value={amount} onChange={(e) => { setAmount(e.target.value.replace(',', '.').trim()) }}></input>
+      <TokenSelectDropdown options={getTokens()} token={token} setToken={(t) => { updatePaymentOptions({ token: t.symbol.toLowerCase() })}}></TokenSelectDropdown>
+    </div>
+  </>;
 }

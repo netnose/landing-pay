@@ -49,8 +49,8 @@ export function Details({
   };
 
   return <section className="details">
-    <h1 className="title">Details</h1>
-    <textarea rows={3} value={paymentOptions.details} onChange={(e) => { updatePaymentOptions({ details: e.target.value }); }} placeholder="Details about this payment or donation"></textarea>
+    <label className="title" htmlFor="details">Details</label>
+    <textarea id="details" name="details" rows={3} value={paymentOptions.details} onChange={(e) => { updatePaymentOptions({ details: e.target.value }); }} placeholder="Details about this payment or donation"></textarea>
     <button type="button" onClick={preview}>Preview</button>
     <button type="button" onClick={shortLink}>{navigator.canShare && navigator.canShare({ url: window.location.origin }) ? 'Share' : 'Open'} short link</button>
   </section>

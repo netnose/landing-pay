@@ -31,7 +31,7 @@ export default function NewPayment() {
   };
 
   return (
-    <main style={{'--background': getTheme(paymentOptions?.theme)} as React.CSSProperties}>
+    <main style={{'--background': getTheme(paymentOptions?.theme).backgroundColor} as React.CSSProperties}>
       <Logo paymentOptions={paymentOptions} />
       <Wizard nextLabel="Next" prevLabel={<><span className="soft">Want to change something? </span>Go back</>} canProceed={canProceed}>
         <ThemeSettings paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} />

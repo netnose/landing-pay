@@ -56,7 +56,7 @@ export default async function Pay({
   const paymentOptions = await decodePaymentOptions(params.options);
 
   return (
-    <main style={{'--background': getTheme(paymentOptions?.theme)} as React.CSSProperties}>
+    <main style={{'--background': getTheme(paymentOptions?.theme).backgroundColor} as React.CSSProperties}>
       <Logo paymentOptions={paymentOptions} />
       {paymentOptions && <Payment paymentOptions={paymentOptions} />}
     </main>

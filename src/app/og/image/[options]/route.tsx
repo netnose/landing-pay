@@ -45,7 +45,7 @@ export async function GET(
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'flex-end',
-          background: getTheme(paymentOptions?.theme),
+          background: getTheme(paymentOptions?.theme).backgroundColor,
           fontSize: 40,
           color: 'black',
           width: '100%',
@@ -81,8 +81,7 @@ export async function GET(
     ),
     {
       width: 1200,
-      height: 630,
-
+      height: 630
     }
   );
 }

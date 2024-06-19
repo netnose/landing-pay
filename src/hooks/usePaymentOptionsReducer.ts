@@ -2,14 +2,14 @@ import { PaymentOptions } from "@/types/PaymentOptions";
 import { useReducer } from "react";
 
 function reducer(state: PaymentOptions, newState: PaymentOptions): PaymentOptions {
-    return { ...state, ...newState };
+  return { ...state, ...newState };
 }
 
 export function usePaymentOptionsReducer() {
-    return useReducer(reducer, {
-        theme: 'based',
-        emoji: '😎',
-        amount: '0',
-        token: 'usdc'
-    });
+  return useReducer(reducer, {
+    theme: 'based',
+    emoji: '😎',
+    amount: '0',
+    token: 'usdc'
+  });
 }

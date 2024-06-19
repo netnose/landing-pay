@@ -1,4 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
 import { base } from "viem/chains";
 import { useConnect } from "wagmi";
 
