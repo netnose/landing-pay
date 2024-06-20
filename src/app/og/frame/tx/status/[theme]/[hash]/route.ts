@@ -1,4 +1,3 @@
-import { getRequestContext } from '@cloudflare/next-on-pages';
 import { FrameButtonMetadata, FrameRequest, getFrameHtmlResponse, getFrameMessage } from '@coinbase/onchainkit/frame';
 import { NextRequest, NextResponse } from 'next/server';
 import { createPublicClient, http, isHex } from 'viem';
@@ -8,8 +7,7 @@ export function GET(req: NextRequest, { params }: { params: { hash: string }}): 
   return NextResponse.redirect('https://onceupon.xyz/' + params.hash);
 }
  
-export async function POST(req: NextRequest, { params }: { params: { hash: string }}): Promise<Response> {
-  const requestCtx = getRequestContext();
+export async function POST(req: NextRequest, { params }: { params: { theme: string, hash: string }}): Promise<Response> {
   const frameRequest: FrameRequest = await req.json();
   const { isValid, message } = await getFrameMessage(frameRequest);
   if (!isValid) return Response.error();
@@ -27,7 +25,7 @@ export async function POST(req: NextRequest, { params }: { params: { hash: strin
     action: 'post',
     label: 'Refresh'
   };
-  let image = requestCtx.env.SITE_URL + '/tx-pending.jpg';
+  let image = process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + params.theme + '/pending.jpg';
 
   try {
     const publicClient = createPublicClient({
@@ -45,7 +43,7 @@ export async function POST(req: NextRequest, { params }: { params: { hash: strin
       target: 'https://onceupon.xyz/' + txHash
     };
 
-    image = transaction.status === 'success' ? requestCtx.env.SITE_URL + '/tx-complete.jpg' : requestCtx.env.SITE_URL + '/tx-error.jpg';
+    image = process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + params.theme + '/' + (transaction.status === 'success' ? 'complete' : 'error') + '.jpg';
   }
   catch {}
 
@@ -53,7 +51,7 @@ export async function POST(req: NextRequest, { params }: { params: { hash: strin
     getFrameHtmlResponse({
       buttons: [button],
       image,
-      postUrl: requestCtx.env.SITE_URL + '/og/frame/tx-status/' + txHash
+      postUrl: process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + params.theme + '/' + txHash
     }),
   );
 }

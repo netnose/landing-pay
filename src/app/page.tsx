@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Landing Pay",
+  title: "LandingPay",
   description: "Pay with crypto the easy way"
 };
 

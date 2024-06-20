@@ -29,6 +29,10 @@ export async function GET(
   }) {
   const paymentOptions = await decodePaymentOptions(params.options);
   const token = getToken(paymentOptions?.token);
+  const fontRegular = await fetch(new URL('Inter-Regular.ttf', import.meta.url));
+  const fontDataRegular = await fontRegular.arrayBuffer();
+  const fontBold = await fetch(new URL('Inter-Bold.ttf', import.meta.url));
+  const fontDataBold = await fontBold.arrayBuffer();
 
   let price;
   try {
@@ -37,51 +41,61 @@ export async function GET(
     }
   }
   catch { }
+  const theme = getTheme(paymentOptions?.theme);
+  const textShadow = theme.forcedContrast ? '1px 1px 20px rgb(0, 0, 0, .6)' : 'none';
   return new ImageResponse(
     (
       <main
         style={{
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-end',
-          background: getTheme(paymentOptions?.theme).backgroundColor,
-          fontSize: 40,
-          color: 'black',
-          width: '100%',
-          height: '100%',
-          padding: '16px'
-        }}
-      >
-        {logoOrEmoji(paymentOptions)}
-        <section style={{
-          display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          background: 'rgb(0, 0, 0)',
-          borderRadius: '16px',
-          color: 'rgb(255, 255, 255)',
+          background: theme.backgroundColor,
+          color: theme.textColor,
+          fontFamily: 'Inter',
+          fontSize: 100,
           width: '100%',
-          padding: '16px 24px'
+          height: '100%',
+          padding: '64px'
+        }}
+      >
+        <section style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '.1em',
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+          maxWidth: '672px',
+          paddingRight: '16px',
+          textShadow
         }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            {paymentOptions.toName && <div style={{fontSize: '1.2em'}}>{paymentOptions.toName}</div>}
-            {paymentOptions.description && <div>{paymentOptions.description}</div>}
-          </div>
+          {paymentOptions.toName && <div style={{lineHeight: '1em', fontFamily: 'InterBold'}}>{paymentOptions.toName}</div>}
+          {paymentOptions.description && <div style={{fontSize: '.6em'}}>{paymentOptions.description}</div>}
           {price && token.symbol && <div style={{
             display: 'flex',
             gap: '.1em',
-            fontSize: '1.5em'
+            fontSize: '.8em'
           }}>{price} <span className="symbol">{token.symbol}</span></div>}
         </section>
+        {logoOrEmoji(paymentOptions)}
       </main>
     ),
     {
       width: 1200,
-      height: 630
+      height: 630,
+      emoji: 'fluent',
+      fonts: [
+        {
+          name: 'Inter',
+          data: fontDataRegular,
+          style: 'normal'
+        },
+        {
+          name: 'InterBold',
+          data: fontDataBold,
+          style: 'normal'
+        }
+      ]
     }
   );
 }
