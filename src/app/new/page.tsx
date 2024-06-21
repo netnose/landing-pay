@@ -16,10 +16,10 @@ export async function generateMetadata(): Promise<Metadata> {
     
     return {
       title: 'Build your Payment page in 1 minute - LandingPay',
-      description: 'Anybody can create a Payment page and get paid in crypto',
+      description: 'Effortlessly create stunning payment pages and securely collect crypto with LandingPay – your gateway to seamless transactions.',
       openGraph: {
         title: 'Build your Payment page in 1 minute - LandingPay',
-        description: 'Anybody can create a Payment page and get paid in crypto',
+        description: 'Effortlessly create stunning payment pages and securely collect crypto with LandingPay – your gateway to seamless transactions.',
         images: process.env.NEXT_PUBLIC_SITE_URL + '/new.jpg'
       },
       other: {

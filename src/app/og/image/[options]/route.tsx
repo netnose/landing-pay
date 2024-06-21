@@ -28,6 +28,7 @@ export async function GET(
     params: { options: string }
   }) {
   const paymentOptions = await decodePaymentOptions(params.options);
+  if (!paymentOptions) return Response.error();
   const token = getToken(paymentOptions?.token);
   const fontRegular = await fetch(new URL('Inter-Regular.ttf', import.meta.url));
   const fontDataRegular = await fontRegular.arrayBuffer();

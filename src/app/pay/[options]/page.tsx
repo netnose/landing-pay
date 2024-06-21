@@ -4,6 +4,7 @@ import { decodePaymentOptions } from "@/utils/payment-options";
 import { getTheme } from "@/utils/themes";
 import { getFrameMetadata } from "@coinbase/onchainkit/core";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params
@@ -27,7 +28,7 @@ export async function generateMetadata({
         action: 'tx',
         label: paymentOptions?.buttonVerb ?? 'Pay',
         target: process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/' + params.options,
-        postUrl: process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + paymentOptions.theme + '/pending'
+        postUrl: process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + paymentOptions?.theme + '/pending'
       }
     ]
   });
@@ -52,6 +53,7 @@ export default async function Pay({
   params: { options: string }
 }) {
   const paymentOptions = await decodePaymentOptions(params.options);
+  if (!paymentOptions) return notFound();
 
   return (
     <main style={{'--background': getTheme(paymentOptions?.theme).backgroundColor} as React.CSSProperties}>

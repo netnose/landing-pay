@@ -4,7 +4,7 @@ import { isValidButtonVerb, validButtonVerbs } from "./button-verbs";
 import base64url from "base64url";
 import { availableEmojis, getThemes } from "./themes";
 
-export async function decodePaymentOptions(options: string): Promise<PaymentOptions> {
+export async function decodePaymentOptions(options: string): Promise<PaymentOptions | undefined> {
   let decodedOptions: PaymentOptions = {};
   try {
     if (options.length <= 64) {
@@ -14,11 +14,21 @@ export async function decodePaymentOptions(options: string): Promise<PaymentOpti
         if (foundOptions !== null) {
           options = foundOptions;
         }
+        else {
+          return;
+        }
       }
-      catch {}
+      catch {
+        return;
+      }
     }
-    const json = base64url.decode(options, 'utf8');
-    decodedOptions = JSON.parse(json) as PaymentOptions;
+    try {
+      const json = base64url.decode(options, 'utf8');
+      decodedOptions = JSON.parse(json) as PaymentOptions;
+    }
+    catch {
+      return;
+    }
     const availableThemes = getThemes();
     if (availableThemes.indexOf(decodedOptions.theme ?? '') === -1) {
       decodedOptions.theme = availableThemes[0] ?? 'based';

@@ -9,6 +9,7 @@ export async function POST(request: Request, {
   params : { options: string }
 }) {
   const paymentOptions = await decodePaymentOptions(params.options);
+  if (!paymentOptions) return Response.error();
   const token = getToken(paymentOptions?.token);
   if (!paymentOptions.toAddress || !isAddress(paymentOptions.toAddress) || !paymentOptions.amount || !isAddress(token.address)) return;
 

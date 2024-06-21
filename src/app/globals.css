@@ -22,6 +22,40 @@ main {
   opacity: .6;
 }
 
+.home {
+  gap: 1rem;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(45deg, #0e76fd 0%, #4ce641 100%);
+  color: rgb(255, 255, 255);
+  padding: 32px;
+}
+
+.home h1 {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.home h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.home p {
+  font-size: 1.2rem;
+  max-width: 500px;
+}
+
+.home .link {
+  margin-top: 2rem;
+  border-radius: 8px;
+  padding: 8px 16px;
+  background: rgb(255, 255, 255, .9);
+  color: rgb(0, 0, 0);
+}
+
 .logo {
   flex-grow: 1;
   display: flex;
@@ -233,6 +267,27 @@ section.recipient-address, select.button-verb, section.price-field, .details tex
 .short-link .link {
   display: block;
   margin-bottom: 1em;
+}
+
+.not-found {
+  background: rgb(14, 118, 253);
+  color: rgb(255, 255, 255);
+}
+
+.not-found .emoji {
+  font-size: 6rem;
+  line-height: 3rem;
+}
+
+.not-found h1 {
+  font-size: 3rem;
+}
+
+.not-found a {
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 8px 16px;
 }
 
 @media (min-width: 600px) {
