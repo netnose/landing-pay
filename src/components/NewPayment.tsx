@@ -10,11 +10,20 @@ import { Wizard } from "@/components/Wizard";
 import { usePaymentOptionsReducer } from "@/hooks/usePaymentOptionsReducer";
 import { getTheme } from "@/utils/themes";
 import { useState } from "react";
+import { ShortLink } from "./ShortLink";
 
 export default function NewPayment() {
   const [paymentOptions, updatePaymentOptions] = usePaymentOptionsReducer();
   const [recipientError, setRecipientError] = useState(false);
   const [priceError, setPriceError] = useState(false);
+  const [shortLinkCache, setShortLinkCache] = useState<{ url: string, data: string }>({ url: '', data: ''});
+
+  const getNextLabel = (step: number) => {
+    if (step === 3) {
+      return 'Get short link';
+    } 
+    return 'Next'
+  };
 
   const canProceed = (step: number) => {
     switch (step) {
@@ -33,13 +42,17 @@ export default function NewPayment() {
   return (
     <main style={{'--background': getTheme(paymentOptions?.theme).backgroundColor} as React.CSSProperties}>
       <Logo paymentOptions={paymentOptions} />
-      <Wizard nextLabel="Next" prevLabel={<><span className="soft">Want to change something? </span>Go back</>} canProceed={canProceed}>
+      <Wizard nextLabel={getNextLabel} prevLabel={<><span className="soft">Want to change something? </span>Go back</>} canProceed={canProceed}>
         <ThemeSettings paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} />
         <RecipientSettings paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} error={recipientError} />
         <PaymentSettings paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} error={priceError} />
         <>
           <PaymentData paymentOptions={paymentOptions} />
           <Details paymentOptions={paymentOptions} updatePaymentOptions={updatePaymentOptions} />
+        </>
+        <>
+          <PaymentData paymentOptions={paymentOptions} />
+          <ShortLink paymentOptions={paymentOptions} shortLinkCache={shortLinkCache} setShortLinkCache={setShortLinkCache} />
         </>
       </Wizard>
     </main>

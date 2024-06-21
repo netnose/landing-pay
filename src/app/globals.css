@@ -116,7 +116,7 @@ main {
   animation-direction: alternate;
 }
 
-.payment button, .connect button, .details button, button.wiz-next, button.wiz-prev {
+.payment button, .connect button, .details button, .short-link button, button.wiz-next, button.wiz-prev {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,7 +130,7 @@ main {
   padding: 8px;
 }
 
-.payment button:hover, .connect button:hover, .details button:hover, button:hover.wiz-next {
+.payment button:hover, .connect button:hover, .details button:hover, .short-link button:hover, button:hover.wiz-next {
   background: rgb(var(--foreground-rgb));
 }
 
@@ -219,6 +219,20 @@ section.recipient-address, select.button-verb, section.price-field, .details tex
   border: none;
   background: transparent;
   border-radius: 4px;
+}
+
+.short-link {
+  text-align: center;
+}
+
+.short-link .buttons {
+  display: flex;
+  gap: 1em;
+}
+
+.short-link .link {
+  display: block;
+  margin-bottom: 1em;
 }
 
 @media (min-width: 600px) {
