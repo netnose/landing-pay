@@ -63,8 +63,8 @@ export function ShortLink({
     {shortLink && <>
       <a className="link" href={shortLink} target="_blank">{shortLink}</a>
       <div className="buttons">
-        {navigator.clipboard && <button type="button" onClick={copy}>{copied ? 'Copied!' : 'Copy'}</button>}
-        {navigator.canShare({ url: shortLink }) && <button type="button" onClick={share}>Share</button>}
+        {navigator && navigator.clipboard && <button type="button" onClick={copy}>{copied ? 'Copied!' : 'Copy'}</button>}
+        {navigator && navigator.canShare && navigator.canShare({ url: shortLink }) && <button type="button" onClick={share}>Share</button>}
       </div>
     </>}
   </section>
