@@ -15,7 +15,7 @@ export function Payment({
 }) {
   const [step, setStep] = useState<string>('intro');
 
-  return <section className="payment">
+  return <section role="region" aria-live="polite" className="payment">
     <PaymentData paymentOptions={paymentOptions} compressed={step !== 'intro'} />
     <Providers>
       {step === 'intro' && <Intro paymentOptions={paymentOptions} setStep={setStep} />}
