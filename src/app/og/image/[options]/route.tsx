@@ -1,5 +1,6 @@
 import { PaymentOptions } from '@/types/PaymentOptions';
 import { decodePaymentOptions } from '@/utils/payment-options';
+import { getPrice } from '@/utils/price';
 import { getTheme } from '@/utils/themes';
 import { getToken } from '@/utils/token';
 import { ImageResponse } from 'next/og';
@@ -29,19 +30,13 @@ export async function GET(
   }) {
   const paymentOptions = await decodePaymentOptions(params.options);
   if (!paymentOptions) return Response.error();
-  const token = getToken(paymentOptions?.token);
   const fontRegular = await fetch(new URL('Inter-Regular.ttf', import.meta.url));
   const fontDataRegular = await fontRegular.arrayBuffer();
   const fontBold = await fetch(new URL('Inter-Bold.ttf', import.meta.url));
   const fontDataBold = await fontBold.arrayBuffer();
 
-  let price;
-  try {
-    if (paymentOptions.amount && token.decimals) {
-      price = formatUnits(BigInt(paymentOptions.amount), token.decimals);
-    }
-  }
-  catch { }
+  const token = getToken(paymentOptions?.token);
+  const price = getPrice(paymentOptions?.amount, token);
   const theme = getTheme(paymentOptions?.theme);
   const textShadow = theme.forcedContrast ? '1px 1px 20px rgb(0, 0, 0, .6)' : 'none';
   return new ImageResponse(

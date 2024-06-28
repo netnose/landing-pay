@@ -1,5 +1,7 @@
 import { useTransactionStatus } from "@/hooks/useTransactionStatus";
 import { PaymentOptions } from "@/types/PaymentOptions";
+import { getCompletionVerb } from "@/utils/button-verbs";
+import { getPrice } from "@/utils/price";
 import { getToken } from "@/utils/token";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { erc20Abi } from "viem";
@@ -46,6 +48,7 @@ export function Transact({
   const { isSuccess, isError, trxHash } = useTransactionStatus(id, hash);
 
   const token = getToken(paymentOptions?.token);
+  const price = getPrice(paymentOptions.amount, token);
 
   useEffect(() => {
     if (!token.address || token.chainId !== 8453 || !paymentOptions?.toAddress || !paymentOptions?.amount) return;
@@ -90,7 +93,8 @@ export function Transact({
     {(id || hash) && !isSuccess && !error && <h1 className="title">Waiting transaction completion...</h1>}
     {error === 'wallet' && <h1 className="title">Wallet error</h1>}
     {error === 'transaction' && <h1 className="title">Transaction error</h1>}
-    {isSuccess && <h1 className="title">Transaction completed</h1>}
+    {isSuccess && price && <h1 className="title">You {getCompletionVerb(paymentOptions.buttonVerb)} {price} {token.symbol}</h1>}
+    {isSuccess && !price && <h1 className="title">Transaction completed</h1>}
     {((!id && !hash) || error === 'transaction') && <button type="button" className="secondary" onClick={reset}>{!error && <span className="soft">Wallet not responding? </span>}Retry</button>}
     {trxHash && <button type="button" className="secondary" onClick={showTransaction}><span className="soft">Check transaction on</span> Once Upon</button>}
   </section>;

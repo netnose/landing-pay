@@ -1,4 +1,5 @@
 import { PaymentOptions } from "@/types/PaymentOptions";
+import { getPrice } from "@/utils/price";
 import { getToken } from "@/utils/token";
 import { formatUnits } from "viem";
 
@@ -10,14 +11,7 @@ export function PaymentData({
   compressed?: boolean
 }) {
   const token = getToken(paymentOptions?.token);
-
-  let price;
-  try {
-    if (paymentOptions.amount && token.decimals) {
-      price = formatUnits(BigInt(paymentOptions.amount), token.decimals);
-    }
-  }
-  catch { }
+  const price = getPrice(paymentOptions?.amount, token);
 
   let className = 'payment-data';
   if (compressed) {
