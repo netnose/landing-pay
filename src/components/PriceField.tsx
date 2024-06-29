@@ -4,8 +4,6 @@ import { TokenSelectDropdown } from "@coinbase/onchainkit/token";
 import { Dispatch, useEffect, useState } from "react";
 import { formatUnits, parseUnits } from "viem";
 
-import '@coinbase/onchainkit/styles.css';
-
 export function PriceField({
   paymentOptions,
   updatePaymentOptions,

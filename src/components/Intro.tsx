@@ -31,7 +31,7 @@ export function Intro({
     <p className="details">{paymentOptions.details ?? ''}</p>
     { account?.status === 'connected' ?
       <>
-        <button type="button" onClick={transact}>{paymentOptions.buttonVerb ?? 'Pay'} with <Avatar address={account.address} /> <Name address={account.address} /></button>
+        <button type="button" onClick={transact}>{paymentOptions.buttonVerb ?? 'Pay'} with <Avatar className="bg-white rounded-full" address={account.address} /> <Name address={account.address} /></button>
         <button type="button" className="secondary" onClick={changeWallet}><span className="soft">Not the right wallet?</span> Change wallet</button>
       </>
       :

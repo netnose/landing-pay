@@ -1,7 +1,7 @@
 import { PaymentOptions } from "@/types/PaymentOptions";
 import { getPrice } from "@/utils/price";
 import { getToken } from "@/utils/token";
-import { formatUnits } from "viem";
+import { VerificationBadge } from "./VerificationBadge";
 
 export function PaymentData({
   paymentOptions,
@@ -19,7 +19,7 @@ export function PaymentData({
   }
 
   return <section className={className}>
-    {paymentOptions.toName && <div className="to-name">{paymentOptions.toName}</div>}
+    {paymentOptions.toName && <div className="to-name">{paymentOptions.toName} <VerificationBadge address={paymentOptions.toAddress} /></div>}
     {price && token.symbol && <div className="price">{price} <span className="symbol">{token.symbol}</span></div>}
     {paymentOptions.description && <div className="description">{paymentOptions.description}</div>}
   </section>;
