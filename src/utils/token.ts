@@ -1,4 +1,5 @@
 import { Token } from "@coinbase/onchainkit/token"
+import { base } from "viem/chains";
 
 const supportedTokens: {
   [key: string]: Token
@@ -6,7 +7,7 @@ const supportedTokens: {
   'usdc': {
     address: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
     image: 'https://d3r81g40ycuhqg.cloudfront.net/wallet/wais/44/2b/442b80bd16af0c0d9b22e03a16753823fe826e5bfd457292b55fa0ba8c1ba213-ZWUzYjJmZGUtMDYxNy00NDcyLTg0NjQtMWI4OGEwYjBiODE2',
-    chainId: 8453,
+    chainId: base.id,
     name: 'USD Coin',
     symbol: 'USDC',
     decimals: 6
@@ -17,7 +18,7 @@ const supportedTokens: {
     symbol: 'DAI',
     decimals: 18,
     image: 'https://d3r81g40ycuhqg.cloudfront.net/wallet/wais/d0/d7/d0d7784975771dbbac9a22c8c0c12928cc6f658cbcf2bbbf7c909f0fa2426dec-NmU4ZWViMDItOTQyYy00Yjk5LTkzODUtNGJlZmJiMTUxOTgy',
-    chainId: 8453,
+    chainId: base.id,
   },
   'weth': {
     name: 'Wrapped Ether',
@@ -25,7 +26,7 @@ const supportedTokens: {
     symbol: 'WETH',
     decimals: 18,
     image: 'https://ethereum-optimism.github.io/data/WETH/logo.png',
-    chainId: 8453
+    chainId: base.id
   },
   'nogs': {
     name: 'Noggles',
@@ -33,7 +34,7 @@ const supportedTokens: {
     symbol: 'NOGS',
     decimals: 18,
     image: 'https://ethereum-optimism.github.io/data/NOGS/logo.png',
-    chainId: 8453
+    chainId: base.id
   },
   'degen': {
     name: 'Degen',
@@ -41,7 +42,7 @@ const supportedTokens: {
     symbol: 'DEGEN',
     decimals: 18,
     image: 'https://coin-images.coingecko.com/coins/images/34515/large/android-chrome-512x512.png?1706198225',
-    chainId: 8453
+    chainId: base.id
   }
 };
 

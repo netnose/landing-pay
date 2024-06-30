@@ -5,6 +5,7 @@ import { getPrice } from "@/utils/price";
 import { getToken } from "@/utils/token";
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
 import { erc20Abi } from "viem";
+import { base } from "viem/chains";
 import { useAccount, useDisconnect, useWriteContract } from "wagmi";
 import { useCapabilities, useWriteContracts } from "wagmi/experimental";
 
@@ -51,8 +52,8 @@ export function Transact({
   const price = getPrice(paymentOptions.amount, token);
 
   useEffect(() => {
-    if (!token.address || token.chainId !== 8453 || !paymentOptions?.toAddress || !paymentOptions?.amount) return;
-    if (availabilityStatus === 'pending') return;
+    if (!token.address || token.chainId !== base.id || !paymentOptions?.toAddress || !paymentOptions?.amount) return;
+    if (availabilityStatus === 'pending' || trxHash) return;
     if (capabilities.paymasterService) {
       writeContracts({
         contracts: [
@@ -69,7 +70,7 @@ export function Transact({
     else {
       writeContract({
         address: token.address,
-        chainId: 8453,
+        chainId: base.id,
         abi: erc20Abi,
         functionName: "transfer",
         args: [paymentOptions.toAddress, BigInt(paymentOptions.amount)]
@@ -93,7 +94,7 @@ export function Transact({
     {(id || hash) && !isSuccess && !error && <h1 className="title">Waiting transaction completion...</h1>}
     {error === 'wallet' && <h1 className="title">Wallet error</h1>}
     {error === 'transaction' && <h1 className="title">Transaction error</h1>}
-    {isSuccess && price && <h1 className="title">You {getCompletionVerb(paymentOptions.buttonVerb)} {price} {token.symbol}</h1>}
+    {isSuccess && price && <h1 className="title">You&apos;ve {getCompletionVerb(paymentOptions.buttonVerb)} {price} {token.symbol}</h1>}
     {isSuccess && !price && <h1 className="title">Transaction completed</h1>}
     {((!id && !hash) || error === 'transaction') && <button type="button" className="secondary" onClick={reset}>{!error && <span className="soft">Wallet not responding? </span>}Retry</button>}
     {trxHash && <button type="button" className="secondary" onClick={showTransaction}><span className="soft">Check transaction on</span> Once Upon</button>}

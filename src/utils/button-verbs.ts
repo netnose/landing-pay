@@ -1,5 +1,5 @@
 export const validButtonVerbs = ['Pay', 'Donate', 'Send'];
-const completionVerbs: { [key: string]: string } = { 'Pay': 'payed', 'Donate': 'donated', 'Send': 'sent' };
+const completionVerbs: { [key: string]: string } = { 'Pay': 'paid', 'Donate': 'donated', 'Send': 'sent' };
 
 export function isValidButtonVerb(verb?: string): boolean {
   if (!verb) return false;

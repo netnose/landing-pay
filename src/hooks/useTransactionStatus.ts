@@ -13,6 +13,7 @@ export function useTransactionStatus(id?: string, hash?: `0x${string}`): {
   const { data: callsStatus } = useCallsStatus({
     id: id ?? '',
     query: {
+      enabled: (id ?? '') !== '',
       refetchInterval: (data) => {
         return data.state.data?.status === "CONFIRMED" ? false : 1000;
       }
