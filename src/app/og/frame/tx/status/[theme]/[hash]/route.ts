@@ -4,7 +4,7 @@ import { createPublicClient, http, isHex } from 'viem';
 import { base } from 'viem/chains';
 
 export function GET(req: NextRequest, { params }: { params: { hash: string }}): Response {
-  return NextResponse.redirect('https://onceupon.xyz/' + params.hash);
+  return NextResponse.redirect('https://basescan.org/tx/' + params.hash);
 }
  
 export async function POST(req: NextRequest, { params }: { params: { theme: string, hash: string }}): Promise<Response> {
@@ -39,8 +39,8 @@ export async function POST(req: NextRequest, { params }: { params: { theme: stri
 
     button = {
       action: 'link',
-      label: 'Check transaction on Once Upon',
-      target: 'https://onceupon.xyz/' + txHash
+      label: 'Check transaction on BaseScan',
+      target: 'https://basescan.org/tx/' + txHash
     };
 
     image = process.env.NEXT_PUBLIC_SITE_URL + '/og/frame/tx/status/' + params.theme + '/' + (transaction.status === 'success' ? 'complete' : 'error') + '.jpg';

@@ -85,7 +85,7 @@ export function Transact({
   }, [isError]);
   
   const reset = () => { setError(undefined); disconnect(); };
-  const showTransaction = () => { window.open('https://onceupon.xyz/' + trxHash); };
+  const showTransaction = () => { window.open('https://basescan.org/tx/' + trxHash); };
   return <section className="transact">
     {!error && !isSuccess && <div className="loading">⏳</div>}
     {error && <div className="error">❌</div>}
@@ -97,6 +97,6 @@ export function Transact({
     {isSuccess && price && <h1 className="title">You&apos;ve {getCompletionVerb(paymentOptions.buttonVerb)} {price} {token.symbol}</h1>}
     {isSuccess && !price && <h1 className="title">Transaction completed</h1>}
     {((!id && !hash) || error === 'transaction') && <button type="button" className="secondary" onClick={reset}>{!error && <span className="soft">Wallet not responding? </span>}Retry</button>}
-    {trxHash && <button type="button" className="secondary" onClick={showTransaction}><span className="soft">Check transaction on</span> Once Upon</button>}
+    {trxHash && <button type="button" className="secondary" onClick={showTransaction}><span className="soft">Check transaction on</span> BaseScan</button>}
   </section>;
 }
