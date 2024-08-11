@@ -4,7 +4,7 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --text-foreground: rgb(0, 0, 0);
+  --text-ock-foreground: rgb(0, 0, 0);
   --bg-default: transparent;
   --midway-rgb: 223, 223, 223;
   --background-rgb: 255, 255, 255;
@@ -164,7 +164,7 @@ main {
 }
 
 .payment button, .connect button, .details button, .short-link button, button.wiz-next, button.wiz-prev {
-  --text-foreground: var(--background-rgb);
+  --text-ock-foreground: var(--background-rgb);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,7 +190,7 @@ main {
   border: 1px solid rgb(0, 0, 0);
   background: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  --text-foreground: rgb(0, 0, 0);
+  --text-ock-foreground: rgb(0, 0, 0);
   padding: 8px;
 }
 
@@ -328,7 +328,7 @@ section.recipient-address, select.button-verb, section.price-field, .details tex
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --text-foreground: rgb(255, 255, 255);
+    --text-ock-foreground: rgb(255, 255, 255);
     --midway-rgb: 63, 63, 63;
     --background-rgb: 0, 0, 0;
   }
