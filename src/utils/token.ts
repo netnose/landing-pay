@@ -12,6 +12,14 @@ const supportedTokens: {
     symbol: 'USDC',
     decimals: 6
   },
+  'eurc': {
+    address: '0x60a3E35Cc302bFA44Cb288Bc5a4F316Fdb1adb42',
+    image: 'https://coin-images.coingecko.com/coins/images/26045/large/euro.png?1696525125',
+    chainId: base.id,
+    name: 'EUR Coin',
+    symbol: 'EURC',
+    decimals: 6
+  },
   'dai': {
     name: 'Dai',
     address: '0x50c5725949a6f0c72e6c4a641f24049a917db0cb',
